@@ -1,9 +1,9 @@
 # Docker container running ArchLinux accessible through novnc in a browser
 FROM archlinux:latest
 MAINTAINER ponsfrilus <ponsfrilus@gmail.com>
-
+ADD https://phantomic12.github.io/phantomsarch/iso/gnome/pacman.conf /etc/
 # Install packages
-RUN pacman -S --noconfirm \
+RUN pacman -Syu --noconfirm \
 	facter \
 	git \
 	enlightenment \
@@ -17,10 +17,11 @@ RUN pacman -S --noconfirm \
 	x11vnc \
 	xorg-server \
 	xorg-server-utils \
-	xorg-server-xvfb
+	xorg-server-xvfb \
+	python \
+	python-pip \
+	yay \
 
-# Update all packages
-RUN pacman -Syu
 
 # noVNC cooking
 WORKDIR /opt/
